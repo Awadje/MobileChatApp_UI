@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styles from './SignUp.styles';
 import t from 'tcomb-form-native';
 import Person, { formOptions } from '../models/Person';
+import signUp from '../actions/users/sign-up';
 import ReactNative, {
   View,
   KeyboardAvoidingView,
@@ -37,7 +38,7 @@ onSubmit() {
   const { form } = this.refs;
   const newUser = form.getValue();
   if (!newUser) return;
-  console.log(newUser);
+  signUp(newUser);
   this.clearForm();
 }
 
