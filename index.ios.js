@@ -5,6 +5,7 @@
  */
 
 import React, { Component } from 'react';
+import SignUp from './screens/SignUp'
 import {
   AppRegistry,
   StyleSheet,
@@ -15,6 +16,7 @@ import {
 export default class ShatApp extends Component {
   render() {
     return (
+      <SignUp />
       <View style={styles.container}>
         <Text style={styles.welcome}>
           Welcome to React Native!
