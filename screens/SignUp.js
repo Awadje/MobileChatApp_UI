@@ -11,44 +11,63 @@ import ReactNative, {
 
 
 export default class SignUp extends Component {
-  constructor(props) {
-    super(props);
+constructor(props) {
+  super(props);
 
-    this.onSubmit = this.onSubmit.bind(this);
-  }
+  this.onChange = this.onChange.bind(this);
+  this.onSubmit = this.onSubmit.bind(this);
 
-  onSubmit() {
-    const { form } = this.refs;
-    const newUser = form.getValue();
-    if (!newUser) return;
-    console.log(newUser);
-  }
+  this.state = { newUser: null };
+}
 
+componentDidMount() {
+// focus on the "name" field
+this.refs.form.getComponent('name').refs.input.focus();
+}
 
-  render() {
-    const Form = t.form.Form;
+clearForm() {
+  this.setState({ newUser: null });
+}
 
-    return (
-      <View style={styles.outerContainer}>
-        <KeyboardAvoidingView
-          behavior="padding"
-          style={styles.container}>
-        <Text style={styles.title}>Sign up for ShatApp</Text>
-      <Form
-      ref="form"
-      type={Person}
-      options={formOptions} />
+onChange(newUser) {
+  this.setState({ newUser });
+}
 
-      <TouchableHighlight
-      style={styles.button}
-      onPress={this.onSubmit}
-      underlayColor='#99d9f4'
-      >
+onSubmit() {
+  const { form } = this.refs;
+  const newUser = form.getValue();
+  if (!newUser) return;
+  console.log(newUser);
+  this.clearForm();
+}
 
-      <Text style={styles.buttonText}>Sign up</Text>
-      </TouchableHighlight>
-       </KeyboardAvoidingView>
-      </View>
+render() {
+const Form = t.form.Form;
+
+  return (
+    <View style={styles.outerContainer}>
+      <KeyboardAvoidingView
+        behavior="padding"
+        style={styles.container}>
+    <Text style={styles.title}>Sign up for ShatApp</Text>
+
+    <Form
+    ref="form"
+    type={Person}
+    options={formOptions}
+    value={this.state.newUser}
+    onChange={this.onChange} />
+
+    <TouchableHighlight
+    style={styles.button}
+    onPress={this.onSubmit}
+    underlayColor='#99d9f4'
+    >
+
+    <Text style={styles.buttonText}>Sign up</Text>
+    </TouchableHighlight>
+    </KeyboardAvoidingView>
+    </View>
     );
   }
 }
