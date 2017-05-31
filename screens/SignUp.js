@@ -3,6 +3,7 @@ import styles from './SignUp.styles';
 import t from 'tcomb-form-native';
 import Person, { formOptions } from '../models/Person';
 import signUp from '../actions/users/sign-up';
+import { connect } from 'react-redux';
 import ReactNative, {
   View,
   KeyboardAvoidingView,
@@ -38,8 +39,8 @@ onSubmit() {
   const { form } = this.refs;
   const newUser = form.getValue();
   if (!newUser) return;
-  signUp(newUser);
-  this.clearForm();
+  console.log(newUser);
+  this.props.signUp(newUser);
 }
 
 render() {
@@ -72,3 +73,7 @@ const Form = t.form.Form;
     );
   }
 }
+
+const mapStateToProps = ({ loading }) => ({ loading });
+
+export default connect(mapStateToProps, { signUp })(SignUp);
