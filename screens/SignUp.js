@@ -6,6 +6,20 @@ import Person, { formOptions } from '../models/Person';
 
 
 export default class SignUp extends Component {
+  constructor(props) {
+    super(props);
+
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onSubmit() {
+    const { form } = this.refs;
+    const newUser = form.getValue();
+    if (!newUser) return;
+    console.log(newUser);
+  }
+
+
   render() {
     const Form = t.form.Form;
 
