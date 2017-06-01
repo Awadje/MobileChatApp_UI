@@ -1,7 +1,6 @@
 import t from 'tcomb-form-native';
 
-const Person = t.struct({
-  name: t.String,
+const User = t.struct({
   email: t.String,
   password: t.String,
 });
@@ -18,4 +17,4 @@ export const formOptions = {
   }
 }
 
-export default Person;
+export default User;
